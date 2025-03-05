@@ -4,274 +4,364 @@
 
 ## Domain Proyek
 
-Obesitas merupakan masalah kesehatan global yang terus meningkat, terutama di negara-negara berkembang. Di Amerika Latin—terutama Meksiko, Peru, dan Kolombia—prevalensi obesitas semakin tinggi dan menjadi faktor risiko utama bagi penyakit kronis seperti diabetes, hipertensi, dan penyakit kardiovaskular. Proyek ini diangkat untuk memahami keterkaitan antara gaya hidup (misalnya, kebiasaan makan, aktivitas fisik, dan riwayat keluarga) dengan tingkat obesitas. Dengan memanfaatkan machine learning, diharapkan dapat dikembangkan model prediktif yang:
+Obesitas merupakan masalah kesehatan global yang semakin meningkat, terutama di negara-negara berkembang. Di Amerika Latin—khususnya Meksiko, Peru, dan Kolombia—prevalensi obesitas terus naik dan menjadi faktor risiko utama bagi penyakit kronis seperti diabetes, hipertensi, dan penyakit kardiovaskular. Proyek ini diangkat untuk memahami keterkaitan antara gaya hidup (misalnya, kebiasaan makan, aktivitas fisik, dan riwayat keluarga) dengan tingkat obesitas. Dengan memanfaatkan machine learning, diharapkan dapat dikembangkan model prediktif yang:
 
 - **Mengklasifikasikan tingkat obesitas secara akurat.**
 - **Menjadi alat bantu bagi profesional kesehatan dalam pengambilan keputusan berbasis data.**
 - **Mengidentifikasi pola-pola tersembunyi dalam data gaya hidup yang berkontribusi terhadap obesitas.**
 
-Pendekatan ini didukung oleh berbagai penelitian yang menekankan pentingnya intervensi dini dan pemanfaatan teknologi data-driven dalam penanganan obesitas, misalnya pada penelitian [Obesity: Preventing and Managing the Global Epidemic](https://scholar.google.com/).
+Pendekatan ini didukung oleh berbagai penelitian, seperti pada studi [Obesity: Preventing and Managing the Global Epidemic](https://scholar.google.com/).
 
 ---
 
 ## Business Understanding
 
-Tahap ini berfokus pada pemahaman mendalam terhadap permasalahan dan perumusan tujuan yang hendak dicapai. Klarifikasi masalah memastikan bahwa solusi yang dikembangkan akan relevan dan berdampak positif bagi kesehatan masyarakat.
+Pada tahap ini, fokus utama adalah memahami permasalahan serta merumuskan tujuan dan solusi yang relevan.
 
 ### Problem Statements
 
-1. **Pernyataan Masalah 1:**  
-   *Bagaimana mengidentifikasi faktor-faktor utama dalam gaya hidup (pola makan, aktivitas fisik, dan riwayat keluarga) yang berkontribusi terhadap peningkatan risiko obesitas?*
+1. **Identifikasi Faktor Gaya Hidup:**  
+   Bagaimana mengidentifikasi faktor-faktor utama (pola makan, aktivitas fisik, dan riwayat keluarga) yang berkontribusi terhadap peningkatan risiko obesitas?
 
-2. **Pernyataan Masalah 2:**  
-   *Bagaimana mengembangkan model machine learning yang dapat mengklasifikasikan tingkat obesitas dengan akurasi tinggi berdasarkan data gaya hidup?*
+2. **Pengembangan Model Prediktif:**  
+   Bagaimana mengembangkan model machine learning yang dapat mengklasifikasikan tingkat obesitas dengan akurasi tinggi berdasarkan data gaya hidup?
 
-3. **Pernyataan Masalah 3:**  
-   *Bagaimana mengintegrasikan data historis dan data sintetik secara efektif untuk meningkatkan validitas dan performa model prediktif?*
+3. **Integrasi Data:**  
+   Bagaimana mengintegrasikan data historis dan data sintetik secara efektif untuk meningkatkan validitas dan performa model prediktif?
 
 ### Goals
 
-1. **Jawaban Pernyataan Masalah 1:**  
-   - Mengidentifikasi dan menganalisis variabel-variabel kritis (kebiasaan makan, frekuensi aktivitas fisik, riwayat keluarga) yang berperan dalam peningkatan risiko obesitas.
-
-2. **Jawaban Pernyataan Masalah 2:**  
-   - Mengembangkan, melatih, dan menguji beberapa model machine learning (misalnya, Random Forest, Support Vector Machine, dan Neural Network) untuk mengklasifikasikan tingkat obesitas dengan metrik evaluasi seperti akurasi, precision, recall, dan F1-score.
-
-3. **Jawaban Pernyataan Masalah 3:**  
-   - Menggabungkan data historis dan data sintetik guna menciptakan dataset yang representatif serta menerapkan teknik data augmentation untuk meningkatkan performa model.
+- **Analisis Variabel:** Mengidentifikasi dan menganalisis variabel kritis yang mempengaruhi tingkat obesitas.
+- **Modeling:** Membangun dan menguji beberapa model (misalnya, Random Forest, Decision Tree, AdaBoost, KNN, Gradient Boosting, Logistic Regression) dengan evaluasi menggunakan metrik seperti akurasi, precision, recall, F1-score, dan confusion matrix.
+- **Data Representatif:** Menggabungkan data historis dan sintetik serta menerapkan teknik data augmentation untuk meningkatkan performa model.
 
 ### Solution Statements
 
 1. **Data Processing:**  
-   - Membangun pipeline pembersihan data dan transformasi fitur untuk memastikan kualitas data sebelum analisis lebih lanjut.
+   Membangun pipeline pembersihan data dan transformasi fitur (encoding, normalisasi) untuk memastikan data berkualitas.
 
 2. **Pengembangan Model:**  
-   - Mengembangkan dan membandingkan beberapa model machine learning dengan melakukan hyperparameter tuning untuk menemukan model dengan performa terbaik.
+   Mengembangkan dan membandingkan beberapa model dengan hyperparameter tuning guna mendapatkan performa terbaik.
 
 3. **Evaluasi Model:**  
-   - Mengimplementasikan validasi silang (cross-validation) dan menggunakan metrik evaluasi yang terukur untuk memastikan keandalan model.
+   Mengimplementasikan validasi silang dan menggunakan berbagai metrik evaluasi untuk memastikan keandalan model.
 
 4. **Ensemble Learning:**  
-   - Menerapkan teknik ensemble untuk menggabungkan prediksi dari beberapa model guna meningkatkan akurasi dan stabilitas prediksi.
+   Menerapkan teknik ensemble untuk menggabungkan prediksi beberapa model guna meningkatkan akurasi dan stabilitas prediksi.
 
 ---
 
 ## Data Understanding
 
-Dataset obesitas yang digunakan mencakup 2111 catatan individu dari tiga negara, yaitu Meksiko, Peru, dan Kolombia. Dataset ini menggabungkan data gaya hidup dan kesehatan melalui kombinasi teknik sintetik dan pengumpulan data langsung melalui platform web. Dataset dapat diunduh melalui [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Obesity+Data+Set) *(tautan contoh)*.
+Dataset obesitas yang digunakan mencakup 2111 catatan individu dari tiga negara (Meksiko, Peru, dan Kolombia). Data ini menggabungkan informasi gaya hidup dan kesehatan yang diperoleh melalui metode sintetik dan pengumpulan langsung via platform web. Dataset dapat diunduh melalui [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Obesity+Data+Set) *(tautan contoh)*.
 
-### Variabel-variabel dalam Dataset
+### Variabel dalam Dataset
 
-- **Gender:** Jenis kelamin individu (Male/Female).
-- **Age:** Usia dalam tahun.
-- **Height:** Tinggi badan dalam meter.
-- **Weight:** Berat badan dalam kilogram.
-- **family_history_with_overweight:** Riwayat keluarga dengan kecenderungan overweight (yes/no).
-- **FAVC:** Frekuensi konsumsi makanan tinggi kalori (yes/no).
-- **FCVC:** Frekuensi konsumsi sayuran (skala 1 hingga 3).
-- **NCP:** Jumlah makan utama per hari.
-- **CAEC:** Frekuensi konsumsi makanan ringan di antara waktu makan (Never, Sometimes, Frequently, Always).
-- **SMOKE:** Status perokok (yes/no).
-- **CH2O:** Asupan air harian (skala 1 hingga 3).
-- **SCC:** Kebiasaan memonitor asupan kalori (yes/no).
-- **FAF:** Frekuensi aktivitas fisik (skala 0 hingga 3).
-- **TUE:** Waktu yang dihabiskan menggunakan teknologi (skala 0 hingga 3).
-- **CALC:** Frekuensi konsumsi alkohol (Never, Sometimes, Frequently, Always).
-- **MTRANS:** Moda transportasi utama (Automobile, Bike, Motorbike, Public Transportation, Walking).
-- **NObeyesdad:** Klasifikasi tingkat obesitas (Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, Obesity Type III).
+- **Gender:** Jenis kelamin (Male/Female)
+- **Age:** Usia (tahun)
+- **Height:** Tinggi badan (meter)
+- **Weight:** Berat badan (kg)
+- **family_history_with_overweight:** Riwayat keluarga dengan kecenderungan overweight (yes/no)
+- **FAVC:** Frekuensi konsumsi makanan tinggi kalori (yes/no)
+- **FCVC:** Frekuensi konsumsi sayuran (skala 1-3)
+- **NCP:** Jumlah makan utama per hari
+- **CAEC:** Frekuensi konsumsi makanan ringan (Never, Sometimes, Frequently, Always)
+- **SMOKE:** Status perokok (yes/no)
+- **CH2O:** Asupan air harian (skala 1-3)
+- **SCC:** Kebiasaan memonitor asupan kalori (yes/no)
+- **FAF:** Frekuensi aktivitas fisik (skala 0-3)
+- **TUE:** Waktu penggunaan teknologi (skala 0-3)
+- **CALC:** Frekuensi konsumsi alkohol (Never, Sometimes, Frequently, Always)
+- **MTRANS:** Moda transportasi (Automobile, Bike, Motorbike, Public Transportation, Walking)
+- **NObeyesdad:** Klasifikasi tingkat obesitas (Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, Obesity Type III)
 
-Untuk lebih memahami karakteristik data, dilakukan eksplorasi awal (exploratory data analysis) dengan visualisasi seperti histogram, boxplot, dan heatmap korelasi. Teknik-teknik ini membantu mengidentifikasi distribusi data, outlier, dan hubungan antar variabel.
+Eksplorasi awal dilakukan menggunakan fungsi seperti `head()`, `info()`, dan `describe()`. Visualisasi awal (histogram, boxplot, heatmap) membantu mengidentifikasi distribusi, outlier, dan hubungan antar variabel.
 
 ---
 
 ## Data Preparation
 
-Tahapan data preparation dilakukan untuk memastikan bahwa data siap digunakan dalam pemodelan. Langkah-langkah yang dilakukan meliputi:
+Langkah-langkah persiapan data meliputi:
 
-1. **Pembersihan Data (Data Cleaning):**
-   - **Identifikasi Missing Values:** Pengecekan nilai yang hilang dan penentuan strategi penanganan (misalnya, imputasi atau penghapusan baris).
-   - **Penanganan Outlier:** Mendeteksi dan menangani outlier yang dapat mempengaruhi kinerja model.
+1. **Pembersihan Data:**  
+   - Mengecek missing values dan menghapus duplikasi.
 
-2. **Transformasi Data:**
-   - **Encoding Variabel Kategorikal:** Variabel seperti *Gender*, *family_history_with_overweight*, *FAVC*, *SMOKE*, *CAEC*, *CALC*, dan *MTRANS* diubah ke format numerik menggunakan teknik One-Hot Encoding atau Label Encoding.
-   - **Normalisasi/Standarisasi:** Variabel numerik seperti *Age*, *Height*, dan *Weight* dinormalisasi menggunakan StandardScaler agar memiliki skala yang konsisten.  
-     *Alasan:* Transformasi ini diperlukan agar algoritma machine learning dapat bekerja optimal dengan data yang terdistribusi secara normal dan homogen.
+2. **Transformasi Data:**  
+   - **Encoding:** Variabel kategorikal (seperti Gender, FAVC, dll.) diubah ke format numerik menggunakan LabelEncoder.
+   - **Normalisasi:** Variabel numerik (Age, Height, Weight) dinormalisasi dengan StandardScaler untuk memastikan skala yang konsisten.
 
-3. **Splitting Data:**
-   - Membagi dataset menjadi data pelatihan (training set) dan data pengujian (testing set) untuk mengevaluasi performa model secara objektif.
+3. **Splitting Data:**  
+   - Dataset dibagi menjadi data pelatihan dan pengujian menggunakan `train_test_split`.
 
-   **Contoh Code Snippet:**
-   ```python
-   from sklearn.model_selection import train_test_split
-   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Modeling
-
-Bagian ini mendokumentasikan proses pemodelan yang digunakan dalam proyek prediksi tingkat obesitas berdasarkan data gaya hidup dan kesehatan.
-
----
-
-## Algoritma yang Digunakan
-
-Dalam proyek ini, beberapa algoritma machine learning diterapkan untuk mengklasifikasikan tingkat obesitas. Berikut adalah deskripsi masing-masing algoritma:
-
-### 1. Random Forest Classifier
-- **Kelebihan:**
-  - Robust terhadap overfitting, terutama pada dataset dengan banyak fitur.
-  - Mampu menangani variabel numerik dan kategorikal dengan baik.
-- **Kekurangan:**
-  - Proses training bisa menjadi lambat pada dataset yang sangat besar.
-- **Parameter Utama:** `n_estimators`, `max_depth`, `max_features`.
-
-### 2. Support Vector Machine (SVM)
-- **Kelebihan:**
-  - Efektif pada ruang berdimensi tinggi.
-  - Cocok untuk dataset dengan ukuran yang tidak terlalu besar.
-- **Kekurangan:**
-  - Memerlukan penalaan parameter kernel yang cermat dan sensitif terhadap skala data.
-- **Parameter Utama:** Kernel (misalnya, linear, RBF), parameter regulasi `C`, dan `gamma`.
-
-### 3. Neural Network (Multi-Layer Perceptron)
-- **Kelebihan:**
-  - Mampu menangkap hubungan non-linear yang kompleks dalam data.
-  - Fleksibel dalam arsitektur sehingga dapat disesuaikan dengan berbagai jenis data.
-- **Kekurangan:**
-  - Memerlukan data training yang cukup besar dan tuning hyperparameter yang kompleks.
-- **Parameter Utama:** Jumlah lapisan tersembunyi, jumlah neuron per lapisan, fungsi aktivasi, dan learning rate.
-
----
-
-## Proses Improvement & Hyperparameter Tuning
-
-Untuk setiap model, dilakukan proses tuning hyperparameter guna menemukan konfigurasi parameter yang optimal dan meningkatkan performa model. Langkah-langkah yang dilakukan meliputi:
-
-- **Menentukan Parameter Grid:**  
-  Menetapkan rentang nilai untuk masing-masing parameter model.
-- **Validasi Silang (Cross-Validation):**  
-  Menggunakan teknik validasi silang untuk mengevaluasi performa setiap kombinasi parameter.
-- **Pemilihan Model Terbaik:**  
-  Memilih model dengan performa terbaik berdasarkan metrik evaluasi seperti akurasi, precision, recall, dan F1-score.
-
-### Contoh Code Snippet untuk Grid Search (Random Forest)
-
+Contoh:
 ```python
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+## Exploratory Data Analysis (EDA)
 
-# Definisikan parameter grid
-param_grid = {
-    'n_estimators': [50, 100, 200],
-    'max_depth': [None, 10, 20],
-    'max_features': ['auto', 'sqrt']
-}
+### Univariate Analysis
 
-# Inisialisasi RandomForestClassifier
-rf = RandomForestClassifier(random_state=42)
-
-# Lakukan Grid Search dengan cross-validation
-grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=5, scoring='accuracy')
-grid_search.fit(X_train, y_train)
-
-# Dapatkan model terbaik dan parameter optimal
-best_rf = grid_search.best_estimator_
-print("Best Parameters:", grid_search.best_params_)
+#### Count Plot for Categorical Variables
+Visualisasi frekuensi masing-masing kategori pada variabel kategorikal.
+```python
+plt.figure(figsize=(15, 10))
+for i, col in enumerate(cat_cols, 1):
+    plt.subplot(3, 3, i)
+    sns.countplot(x=col, data=df, palette="viridis")
+    plt.title(f"Count of {col}")
+    plt.xlabel(col)
+    plt.ylabel("Count")
+plt.tight_layout()
+plt.show()
+```
+#### Histogram for Numeric Variables
+Menganalisis distribusi setiap variabel numerik.
+```python
+plt.figure(figsize=(15, num_rows * 5))
+for i, column in enumerate(numeric_cols, 1):
+    plt.subplot(num_rows, num_cols, i)
+    sns.histplot(df[column], bins=30, kde=True, color='darkblue')
+    plt.title(f"Histogram: {column}")
+    plt.xlabel(column)
+    plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+```
+#### Pie Charts for Binned Numeric Data
+Menganalisis distribusi setiap variabel numerik.
+```python
+plt.figure(figsize=(15, num_rows * 5))
+for i, column in enumerate(numeric_cols, 1):
+    plt.subplot(num_rows, num_cols, i)
+    sns.histplot(df[column], bins=30, kde=True, color='darkblue')
+    plt.title(f"Histogram: {column}")
+    plt.xlabel(column)
+    plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+```
+### Multivariate Analysis
+#### Pairplot for Numeric Features
+Menggambarkan hubungan antar variabel numerik serta distribusinya.
+```python
+sns.pairplot(df[numeric_cols], diag_kind='kde', corner=True)
+plt.suptitle("Pairplot for Numeric Features", y=1.02)
+plt.show()
+```
+#### Correlation Heatmap
+Menampilkan matriks korelasi antar fitur numerik untuk mengidentifikasi hubungan linier.
+```python
+plt.figure(figsize=(10, 6))
+sns.heatmap(df[numeric_cols].corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Feature Correlation Heatmap")
+plt.show()
 ```
 
+### Model Development & Evaluation
+#### Model Training and Evaluation
+Kode berikut melatih beberapa model dan menghitung metrik evaluasi seperti accuracy, precision, recall, F1 score, serta menampilkan confusion matrix:
+```python
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+
+# Define models dictionary
+models = {
+    "Random Forest Classifier": RandomForestClassifier(),
+    "Decision Tree Classifier": DecisionTreeClassifier(),
+    "Ada Boost Classifier": AdaBoostClassifier(),
+    "KNN": KNeighborsClassifier(),
+    "Gradient Boosting Classifier": GradientBoostingClassifier(),
+    "Logistic Regression": LogisticRegression(max_iter=1000)
+}
+
+print("Defined Models:")
+print(models)
+
+# Dictionary untuk menyimpan hasil evaluasi
+results = {}
+
+for name, model in models.items():
+    # Training model
+    model.fit(x_train, y_train)
+    
+    # Prediksi pada data testing
+    y_pred = model.predict(x_test)
+    
+    # Hitung metrik evaluasi
+    acc = accuracy_score(y_test, y_pred)
+    prec = precision_score(y_test, y_pred, average='weighted')
+    rec = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted')
+    cm = confusion_matrix(y_test, y_pred)
+    
+    # Simpan hasil evaluasi
+    results[name] = {
+       "accuracy": acc,
+       "precision": prec,
+       "recall": rec,
+       "f1_score": f1,
+       "confusion_matrix": cm
+    }
+    
+    print(f"\n{name}:")
+    print(f"  Accuracy: {acc:.4f}")
+    print(f"  Precision: {prec:.4f}")
+    print(f"  Recall: {rec:.4f}")
+    print(f"  F1 Score: {f1:.4f}")
+    print("  Confusion Matrix:")
+    print(cm)
+
+# Menentukan model terbaik berdasarkan akurasi
+best_model_name = max(results, key=lambda x: results[x]["accuracy"])
+print(f"\nBest Model by Accuracy: {best_model_name}")
+
+# Visualisasi Confusion Matrix untuk model terbaik
+best_cm = results[best_model_name]["confusion_matrix"]
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(best_cm, annot=True, fmt='d', cmap='Blues')
+plt.title(f"Confusion Matrix for {best_model_name}")
+plt.xlabel("Predicted Label")
+plt.ylabel("True Label")
+plt.show()
+```
+#### Visualizing Model Accuracy Comparison
+Bar chart berikut mengurutkan dan membandingkan akurasi dari setiap model:
+```python
+# Urutkan model berdasarkan akurasi
+sorted_accuracy = sorted(results.items(), key=lambda x: x[1]["accuracy"], reverse=True)
+accuracy_values = [item[1]["accuracy"] for item in sorted_accuracy]
+model_names = [item[0] for item in sorted_accuracy]
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x=accuracy_values, y=model_names, palette="Blues_r")
+plt.xlabel("Accuracy Score")
+plt.ylabel("Model")
+plt.title("Model Accuracy Comparison")
+plt.xlim(0.5, 1)
+for index, value in enumerate(accuracy_values):
+    plt.text(value - 0.05, index, f"{value:.4f}", ha='center', fontsize=12, color='black')
+plt.show()
+```
+### Evaluation Metriks
+#### Overview
 # Evaluation Metrics
+
+Pada tahap ini, kita akan membahas metrik yang digunakan untuk mengevaluasi performa model dalam melakukan klasifikasi tingkat obesitas. Metrik yang dipilih memberikan gambaran menyeluruh mengenai kekuatan model dalam mendeteksi kelas positif maupun negatif secara seimbang.
+
+---
 
 ## Overview
 
-Dalam proyek prediksi tingkat obesitas ini, metrik evaluasi digunakan untuk mengukur performa model dalam mengklasifikasikan data berdasarkan variabel gaya hidup dan kesehatan. Metrik yang digunakan mencakup:
+Dalam proyek klasifikasi tingkat obesitas, beberapa metrik evaluasi digunakan untuk mengukur seberapa baik model memprediksi label yang benar. Metrik-metrik tersebut mencakup:
 
-- **Akurasi**
+- **Accuracy**
 - **Precision**
 - **Recall**
 - **F1 Score**
+- **Confusion Matrix**
 
-Metrik-metrik ini dipilih karena memberikan gambaran menyeluruh mengenai kekuatan model, baik dalam mendeteksi kelas positif maupun dalam menjaga keseimbangan antara kesalahan tipe I dan tipe II.
+Metrik-metrik ini membantu memastikan bahwa model tidak hanya akurat secara keseluruhan, tetapi juga memiliki keseimbangan dalam mendeteksi kelas positif dan negatif.
 
 ---
 
 ## Detail Metrik
 
-### Akurasi
+### 1. Accuracy
+
 - **Definisi:**  
   Persentase prediksi yang benar dari total keseluruhan data.
 - **Formula:**  
   \[
   \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
   \]
-- **Keterangan:**  
-  Akurasi merupakan metrik dasar yang memberikan gambaran umum tentang kinerja model. Namun, jika dataset tidak seimbang, akurasi saja mungkin tidak cukup menggambarkan performa model.
+- **Penjelasan:**  
+  - TP: True Positive  
+  - TN: True Negative  
+  - FP: False Positive  
+  - FN: False Negative  
+  Meskipun akurasi adalah metrik yang umum digunakan, pada kasus dengan distribusi kelas yang tidak seimbang, akurasi saja belum cukup untuk mengevaluasi kinerja model.
 
-### Precision
+### 2. Precision
+
 - **Definisi:**  
   Mengukur seberapa tepat prediksi positif yang dibuat oleh model.
 - **Formula:**  
   \[
   \text{Precision} = \frac{TP}{TP + FP}
   \]
-- **Keterangan:**  
-  Precision tinggi mengindikasikan bahwa model jarang salah mengklasifikasikan data negatif sebagai positif.
+- **Penjelasan:**  
+  Precision yang tinggi menandakan bahwa model jarang salah mengklasifikasikan data negatif menjadi positif. Hal ini penting pada kasus di mana kesalahan *false positive* harus diminimalkan.
 
-### Recall
+### 3. Recall
+
 - **Definisi:**  
-  Mengukur kemampuan model dalam menangkap seluruh data positif yang sebenarnya.
+  Mengukur kemampuan model dalam mendeteksi seluruh instance positif yang sebenarnya.
 - **Formula:**  
   \[
   \text{Recall} = \frac{TP}{TP + FN}
   \]
-- **Keterangan:**  
-  Recall yang tinggi berarti model mampu mendeteksi sebagian besar contoh positif, sehingga mengurangi kemungkinan terjadinya false negatives.
+- **Penjelasan:**  
+  Recall yang tinggi menandakan bahwa model jarang gagal mendeteksi data positif (*false negative*). Hal ini penting pada kasus di mana setiap instance positif harus terdeteksi, misalnya pada diagnosa penyakit.
 
-### F1 Score
+### 4. F1 Score
+
 - **Definisi:**  
-  Rata-rata harmonis dari Precision dan Recall, memberikan keseimbangan antara keduanya.
+  Rata-rata harmonis dari Precision dan Recall, memberikan keseimbangan di antara keduanya.
 - **Formula:**  
   \[
   \text{F1 Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
   \]
-- **Keterangan:**  
-  F1 Score sangat berguna ketika ingin mendapatkan keseimbangan antara Precision dan Recall, terutama pada situasi dengan distribusi kelas yang tidak seimbang.
+- **Penjelasan:**  
+  F1 Score sangat berguna ketika kita ingin mendapatkan keseimbangan antara Precision dan Recall, terutama pada data dengan distribusi kelas yang tidak seimbang.
+
+### 5. Confusion Matrix
+
+- **Definisi:**  
+  Matriks yang menampilkan jumlah prediksi benar dan salah untuk masing-masing kelas.  
+- **Penjelasan:**  
+  - Baris pada confusion matrix mewakili label sebenarnya (actual class).  
+  - Kolom pada confusion matrix mewakili prediksi model (predicted class).  
+  Dengan menganalisis confusion matrix, kita dapat mengetahui secara spesifik kelas mana yang sering salah diprediksi oleh model.
 
 ---
 
 ## Implementasi Kode
 
-Berikut contoh implementasi perhitungan metrik evaluasi menggunakan Python dan scikit-learn:
+Berikut contoh penggunaan metrik evaluasi pada data testing (y_test) dan hasil prediksi model (y_pred):
 
 ```python
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-# Misal y_true adalah label asli, dan y_pred adalah hasil prediksi model
-accuracy = accuracy_score(y_true, y_pred)
-precision = precision_score(y_true, y_pred, average='weighted')
-recall = recall_score(y_true, y_pred, average='weighted')
-f1 = f1_score(y_true, y_pred, average='weighted')
+# Contoh: y_test dan y_pred sudah tersedia
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='weighted')
+recall = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
 
-print("Akurasi: {:.2f}%".format(accuracy * 100))
+cm = confusion_matrix(y_test, y_pred)
+
+print("Accuracy: {:.2f}%".format(accuracy * 100))
 print("Precision: {:.2f}%".format(precision * 100))
 print("Recall: {:.2f}%".format(recall * 100))
 print("F1 Score: {:.2f}%".format(f1 * 100))
+print("\nConfusion Matrix:")
+print(cm)
 ```
+#### Penjelasan:
+- accuracy_score: Menghitung persentase prediksi yang benar.
+- precision_score: Mengukur ketepatan prediksi positif (menggunakan average='weighted' untuk multi-class).
+- recall_score: Mengukur seberapa baik model mendeteksi semua instance positif.
+- f1_score: Menggabungkan Precision dan Recall dalam satu metrik.
+confusion_matrix: Menunjukkan distribusi prediksi untuk setiap kelas secara rinci
 
-# Conclusion
+#### Conclusion
+Penggunaan metrik seperti Accuracy, Precision, Recall, dan F1 Score memungkinkan kita untuk mengevaluasi model secara menyeluruh. Setiap metrik memiliki fokus yang berbeda:
 
-Dalam proyek prediksi tingkat obesitas ini, evaluasi model dilakukan dengan menggunakan metrik seperti akurasi, precision, recall, dan F1 score. Berdasarkan analisis dan pengujian yang telah dilakukan, terdapat beberapa poin penting yang dapat disimpulkan:
+- Accuracy memberikan pandangan umum seberapa sering prediksi benar.
+- Precision berfokus pada ketepatan prediksi positif.
+- Recall menyoroti kemampuan model dalam menangkap seluruh instance positif.
+- F1 Score menggabungkan kedua aspek tersebut (Precision dan Recall).
+- Confusion Matrix membantu memahami detail kesalahan model di setiap kelas.
 
-- **Efektivitas Model:**  
-  Model yang dikembangkan mampu mengklasifikasikan tingkat obesitas dengan performa yang baik. Metrik evaluasi menunjukkan bahwa model dapat secara konsisten menghasilkan prediksi yang akurat serta seimbang dalam menangkap kelas positif dan negatif.
-
-- **Keseimbangan Precision dan Recall:**  
-  Dengan mempertimbangkan nilai precision dan recall, model terpilih berhasil mengurangi kesalahan false positive dan false negative. Hal ini penting untuk aplikasi kesehatan, di mana kesalahan klasifikasi dapat berdampak signifikan terhadap intervensi dan diagnosis.
-
-- **Keseimbangan F1 Score:**  
-  F1 score, sebagai rata-rata harmonis dari precision dan recall, memberikan gambaran bahwa model tidak hanya akurat tetapi juga sensitif terhadap data positif. Ini mengindikasikan bahwa pendekatan yang digunakan tepat dalam menangani dataset dengan distribusi kelas yang tidak seimbang.
-
-- **Potensi Penerapan:**  
-  Hasil evaluasi mendukung potensi penggunaan model ini dalam skenario dunia nyata. Model dapat dijadikan dasar untuk pengembangan sistem pendukung keputusan berbasis data yang membantu profesional kesehatan dalam melakukan diagnosis dini dan intervensi personal terhadap masalah obesitas.
-
-- **Rekomendasi Pengembangan:**  
-  Disarankan untuk melakukan pengembangan lebih lanjut, seperti eksplorasi teknik ensemble atau integrasi data tambahan, guna meningkatkan performa dan generalisasi model.
-
-Secara keseluruhan, proyek ini tidak hanya memberikan insight mendalam mengenai faktor-faktor yang berkontribusi terhadap obesitas, tetapi juga menekankan pentingnya evaluasi komprehensif dalam pengembangan solusi machine learning untuk aplikasi kesehatan.
+Dengan menggabungkan semua metrik ini, kita dapat menilai kinerja model secara komprehensif dan menentukan langkah selanjutnya, seperti melakukan hyperparameter tuning atau pemilihan model lain yang lebih sesuai. Model terbaik dapat dijadikan dasar untuk sistem pendukung keputusan dalam penanganan obesitas secara lebih efektif dan tepat sasaran.
