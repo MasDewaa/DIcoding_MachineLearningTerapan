@@ -10,7 +10,7 @@ Obesitas merupakan masalah kesehatan global yang semakin meningkat, terutama di 
 - **Menjadi alat bantu bagi profesional kesehatan dalam pengambilan keputusan berbasis data.**
 - **Mengidentifikasi pola-pola tersembunyi dalam data gaya hidup yang berkontribusi terhadap obesitas.**
 
-Pendekatan ini didukung oleh berbagai penelitian, seperti pada studi [Obesity: Preventing and Managing the Global Epidemic](https://scholar.google.com/).
+Pendekatan ini didukung oleh berbagai penelitian, seperti pada studi [Obesity: Preventing and Managing the Global Epidemic](https://onlinelibrary.wiley.com/doi/abs/10.1111/obr.12872).
 
 ---
 
@@ -53,7 +53,7 @@ Pada tahap ini, fokus utama adalah memahami permasalahan serta merumuskan tujuan
 
 ## Data Understanding
 
-Dataset obesitas yang digunakan mencakup 2111 catatan individu dari tiga negara (Meksiko, Peru, dan Kolombia). Data ini menggabungkan informasi gaya hidup dan kesehatan yang diperoleh melalui metode sintetik dan pengumpulan langsung via platform web. Dataset dapat diunduh melalui [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Obesity+Data+Set) *(tautan contoh)*.
+Dataset obesitas yang digunakan mencakup 2111 catatan individu dari tiga negara (Meksiko, Peru, dan Kolombia). Data ini menggabungkan informasi gaya hidup dan kesehatan yang diperoleh melalui metode sintetik dan pengumpulan langsung via platform web. Dataset dapat diunduh melalui [Kaggle](https://www.kaggle.com/datasets/adeniranstephen/obesity-prediction-dataset).
 
 ### Variabel dalam Dataset
 
