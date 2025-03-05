@@ -82,34 +82,66 @@ Tahap EDA dilakukan untuk menggali informasi lebih dalam dari data melalui anali
 
 ### Univariate Analysis
 
-Dalam analisis univariate, dilakukan:
-- **Count Plot:** Untuk variabel kategorikal, count plot digunakan guna memvisualisasikan frekuensi setiap kategori. Hal ini membantu melihat distribusi dan dominasi kategori tertentu.
-- **Histogram:** Untuk variabel numerik, histogram dengan overlay density (KDE) digunakan untuk melihat distribusi nilai serta mendeteksi kemungkinan adanya outlier.
-- **Pie Chart:** Data numerik juga dikelompokkan ke dalam beberapa bin, dan pie chart digunakan untuk menampilkan proporsi tiap bin, memberikan gambaran tentang sebaran nilai.
+Dalam analisis univariate, dilakukan untuk:
+- **Histogram untuk Variabel Numerik:**  
+  Visualisasi histogram dengan overlay KDE (Kernel Density Estimate) pada variabel numerik seperti Age, Height, Weight, FCVC, NCP, CH2O, FAF, dan TUE mengungkap beberapa hal berikut:
+
+  - Age: Distribusi usia cenderung berpusat pada usia dewasa muda hingga paruh baya, dengan sedikit ekor panjang di usia yang lebih tinggi.
+  - Height: Terlihat mayoritas data berpusat di sekitar tinggi rata-rata, meskipun terdapat beberapa outlier yang cukup jauh dari puncak distribusi.
+  - Weight: Distribusi berat badan cenderung melebar, menandakan keragaman berat badan yang signifikan. Outlier yang cukup ekstrem juga terdeteksi pada sisi berat badan yang tinggi.
+  - FCVC, NCP, CH2O, FAF, dan TUE: Masing-masing variabel memiliki skala 0-3 atau 1-3, sehingga histogram memperlihatkan sebaran terbatas pada rentang nilai tertentu. Sebagian besar individu cenderung berada pada frekuensi aktivitas atau konsumsi yang moderat (nilai tengah).
+
+- **Count Plot untuk Variabel Kategorikal:**  
+  Count plot pada variabel kategorikal seperti Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC, MTRANS, dan NObeyesdad memperlihatkan:
+
+  - Gender: Terlihat pembagian yang relatif seimbang antara individu berjenis kelamin pria dan wanita.
+  family_history_with_overweight: Mayoritas responden memiliki riwayat keluarga overweight, menunjukkan bahwa faktor genetik dan lingkungan keluarga berperan penting dalam risiko obesitas.
+  - FAVC, CAEC, SMOKE, SCC, CALC: Frekuensi masing-masing kategori memberikan gambaran kebiasaan gaya hidup, seperti kebiasaan merokok, konsumsi makanan ringan, atau memantau asupan kalori.
+  - MTRANS: Moda transportasi yang dominan adalah mobil (Automobile) dan transportasi umum (Public Transportation), sementara penggunaan sepeda motor dan sepeda relatif lebih rendah.
+  - NObeyesdad: Klasifikasi tingkat obesitas bervariasi, dengan porsi terbanyak pada kategori Normal Weight, Overweight, dan Obesity Type I.
 
 ### Multivariate Analysis
 
-Analisis multivariate dilakukan dengan:
-- **Pairplot:** Untuk mengeksplorasi hubungan dan distribusi antar variabel numerik secara berpasangan, sehingga dapat mengidentifikasi pola dan hubungan antar fitur.
-- **Correlation Heatmap:** Matriks korelasi dibuat untuk menilai hubungan linier antar fitur numerik. Visualisasi ini membantu mengidentifikasi fitur yang sangat berkorelasi, yang penting dalam pemilihan fitur dan pengembangan model.
+Dua visualisasi berikut memberikan pandangan lebih luas terhadap hubungan antar variabel numerik:
+
+- **Pairplot for Numeric Features**  
+   - Pairplot di atas memperlihatkan hubungan dua variabel numerik sekaligus dan distribusinya. Setiap diagonal menampilkan histogram (atau KDE) untuk satu variabel, sementara sel di luar diagonal menampilkan scatter plot untuk dua variabel.  
+   - Hasil pengamatan menunjukkan bahwa beberapa variabel seperti Height dan Weight memiliki korelasi positif yang jelas, sedangkan variabel lain (misalnya Age, CH2O, TUE) tidak menunjukkan korelasi linear yang kuat.
+
+- **Feature Correlation Heatmap**  
+   - Heatmap di atas menampilkan matriks korelasi antar fitur numerik. Skala warna pada sisi kanan menunjukkan tingkat korelasi, dari -1 (korelasi negatif sempurna) hingga +1 (korelasi positif sempurna).  
+   - Terlihat bahwa Weight memiliki korelasi positif yang cukup tinggi dengan Height (sekitar 0.46), sedangkan Age, CH2O, FAF, dan TUE cenderung tidak memiliki korelasi linear yang kuat terhadap fitur lain (nilai korelasi di bawah 0.3).  
+   - Korelasi yang relatif rendah antara kebanyakan variabel menandakan bahwa data ini memiliki banyak faktor gaya hidup yang berdampak, namun tidak secara linear. Hal ini memengaruhi strategi pemilihan algoritma machine learning dan teknik feature engineering yang tepat untuk meningkatkan performa model.
+
+Secara keseluruhan, pairplot dan correlation heatmap ini mengonfirmasi bahwa variabel Height dan Weight memiliki hubungan linear yang paling menonjol, sementara variabel lain memerlukan pendekatan yang lebih kompleks atau non-linear untuk diolah dalam model. Wawasan ini menjadi dasar bagi proses pemilihan fitur, pemodelan, dan evaluasi selanjutnya.  
+
 ---
 
 ## Data Preparation
 
-Proses persiapan data dilakukan secara runtut untuk memastikan bahwa data bersih, konsisten, dan siap digunakan dalam tahap pemodelan. Berikut adalah langkah-langkah yang dilakukan:
+Proses Data Preparation telah dilakukan secara sistematis untuk memastikan data dalam kondisi optimal sebelum digunakan untuk pemodelan. Langkah-langkah yang telah dilakukan adalah sebagai berikut:
 
-1. **Pembersihan Data:**
-   - Dilakukan pemeriksaan seluruh kolom untuk mendeteksi adanya missing values. Hasil pemeriksaan menunjukkan bahwa dataset tidak mengandung nilai yang hilang sehingga tidak diperlukan imputasi.
-   - Deteksi baris duplikat dilakukan untuk memastikan setiap record unik. Baris duplikat yang teridentifikasi kemudian dihapus untuk menjaga integritas data.
+1. **Pembersihan Data:**  
+   - Dilakukan pemeriksaan terhadap missing value dan tidak ditemukan nilai yang hilang pada dataset.  
+   - Baris duplikat telah diidentifikasi dan dihapus, sehingga setiap record dalam dataset unik dan konsisten.
 
-2. **Transformasi Data:**
-   - **Encoding Variabel Kategorikal:**  
-     Variabel seperti *Gender*, *family_history_with_overweight*, *FAVC*, *CAEC*, *SMOKE*, *SCC*, *CALC*, *MTRANS*, dan *NObeyesdad* diubah ke format numerik menggunakan teknik Label Encoding. Hal ini memastikan bahwa seluruh variabel dapat diproses oleh algoritma machine learning yang hanya menerima data numerik.
-   - **Normalisasi/Standarisasi Variabel Numerik:**  
-     Variabel numerik, misalnya *Age*, *Height*, dan *Weight*, distandarisasi menggunakan StandardScaler untuk memastikan setiap fitur memiliki skala yang konsisten. Langkah ini membantu mencegah model terpengaruh oleh perbedaan skala antar variabel.
+2. **Encoding Variabel Kategorikal:**  
+   - Seluruh variabel kategorikal (misalnya, Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC, MTRANS, dan NObeyesdad) diubah ke dalam format numerik menggunakan LabelEncoder.  
+   - Pengkodean ini memastikan bahwa data dapat diproses oleh algoritma machine learning yang hanya menerima input numerik.  
+   - Pemeriksaan ulang dilakukan untuk memastikan tidak ada kolom kategorikal yang tertinggal, sehingga semua data dalam fitur telah terkonversi dengan benar.
 
-3. **Splitting Data:**
-   - Dataset dibagi menjadi data pelatihan (training set) dan data pengujian (testing set) dengan proporsi yang telah ditentukan (misalnya, 80:20 atau 75:25). Pembagian ini penting untuk mengevaluasi kinerja model secara objektif pada data yang belum pernah digunakan saat pelatihan.
+3. **Pemisahan Fitur dan Target:**  
+   - Setelah proses encoding, fitur (predictor) dan target (kelas obesitas) telah dipisahkan dengan tepat.  
+   - Target diambil dari kolom NObeyesdad, sedangkan seluruh kolom lainnya digunakan sebagai fitur untuk memprediksi tingkat obesitas.
+
+4. **Train-Test Split:**  
+   - Data dibagi menjadi data pelatihan dan data pengujian menggunakan metode train-test split.  
+   - Pembagian dilakukan sebelum proses standarisasi untuk menghindari kebocoran informasi antara data pelatihan dan pengujian.
+
+5. **Standarisasi Fitur Numerik:**  
+   - Proses standarisasi dilakukan pada data pelatihan dengan StandardScaler, dan transformasi yang sama kemudian diterapkan pada data pengujian.  
+   - Langkah ini memastikan bahwa seluruh fitur numerik berada pada skala yang seragam, yang penting untuk algoritma machine learning yang sensitif terhadap perbedaan skala.
+
 ---
 
 ## Model Development
@@ -173,34 +205,110 @@ Beberapa model telah dilatih menggunakan data pelatihan yang telah dipreproses, 
 - **F1 Score:** Rata-rata harmonis antara precision dan recall.
 - **Confusion Matrix:** Distribusi prediksi terhadap label asli untuk masing-masing kelas.
 
-Dari evaluasi tersebut, ditemukan bahwa:
-- **Gradient Boosting Classifier** menghasilkan akurasi tertinggi (sekitar 96.55%) dengan nilai precision, recall, dan F1 score yang sangat tinggi. 
-- **Random Forest Classifier** dan **Decision Tree Classifier** juga menunjukkan performa yang baik, meskipun sedikit di bawah model Gradient Boosting.
-- **Ada Boost Classifier** dan **KNN** menunjukkan performa yang jauh lebih rendah dan tidak konsisten.
+### Hasil Metrik Evaluasi
 
-## Komparasi Skema Pelatihan dan Pemilihan Model Terbaik
+1. **Random Forest Classifier**  
+   - **Accuracy:** 0.9540  
+   - **Precision:** 0.9550  
+   - **Recall:** 0.9540  
+   - **F1 Score:** 0.9543  
+   - **Confusion Matrix:**  
+     ```
+     [[70  4  0  0  0  0  0]
+      [ 2 69  0  0  0  5  0]
+      [ 0  0 83  0  0  0  2]
+      [ 0  0  0 82  0  0  0]
+      [ 0  0  0  0 77  0  0]
+      [ 0  6  0  0  0 63  2]
+      [ 0  2  1  0  0  0 54]]
+     ```
+   Model ini menunjukkan performa yang sangat baik, dengan akurasi di atas 95%. Nilai precision, recall, dan F1 score yang hampir seimbang menandakan bahwa Random Forest dapat mengklasifikasikan tiap kelas obesitas dengan cukup konsisten.
 
-Dua skema pelatihan yang diterapkan menggunakan berbagai algoritma menunjukkan perbedaan yang signifikan. Model dengan evaluasi terbaik adalah Gradient Boosting Classifier, yang secara konsisten unggul pada semua metrik evaluasi. Pemilihan model terbaik didasarkan pada nilai akurasi tertinggi serta keseimbangan antara precision, recall, dan F1 score. Hal ini menandakan bahwa model tersebut lebih andal dalam mengklasifikasikan tingkat obesitas pada berbagai kelas dibandingkan model-model lainnya.
+2. **Decision Tree Classifier**  
+   - **Accuracy:** 0.9425  
+   - **Precision:** 0.9422  
+   - **Recall:** 0.9425  
+   - **F1 Score:** 0.9422  
+   - **Confusion Matrix:**  
+     ```
+     [[69  5  0  0  0  0  0]
+      [ 6 65  0  0  0  4  1]
+      [ 0  0 80  2  1  0  2]
+      [ 0  0  2 80  0  0  0]
+      [ 0  0  0  0 77  0  0]
+      [ 0  2  0  0  0 68  1]
+      [ 0  0  4  0  0  0 53]]
+     ```
+   Model ini juga menunjukkan performa yang baik dengan akurasi di atas 94%. Namun, Decision Tree lebih rentan terhadap overfitting dan terkadang kurang stabil dibandingkan metode ensemble lainnya.
+
+3. **AdaBoost Classifier**  
+   - **Accuracy:** 0.3812  
+   - **Precision:** 0.1986  
+   - **Recall:** 0.3812  
+   - **F1 Score:** 0.2596  
+   - **Confusion Matrix:**  
+     ```
+     [[ 0 74  0  0  0  0  0]
+      [ 0 51  6  0  0  0 19]
+      [ 0  0 66  0 19  0  0]
+      [ 0  0  8  0 74  0  0]
+      [ 0  0  0  0 77  0  0]
+      [ 0 12 27  0  0  0 32]
+      [ 0  4 48  0  0  0  5]]
+     ```
+   Hasil ini menunjukkan bahwa AdaBoost kurang berhasil pada dataset obesitas ini, dengan akurasi di bawah 40% dan metrik evaluasi lain yang rendah. Ada kemungkinan model ini tidak cocok dengan distribusi data, atau parameter default belum dioptimalkan.
+
+4. **K-Nearest Neighbors (KNN)**  
+   - **Accuracy:** 0.8065  
+   - **Precision:** 0.8024  
+   - **Recall:** 0.8065  
+   - **F1 Score:** 0.7972  
+   - **Confusion Matrix:** (Truncated)
+     ```
+     ...
+     ```
+   KNN menunjukkan akurasi sekitar 80%, cukup baik namun tidak setinggi metode ensemble. KNN juga sensitif terhadap skala data dan parameter seperti jumlah tetangga (k), sehingga memerlukan tuning lebih lanjut.
+
+5. **Gradient Boosting Classifier**  
+   - **Accuracy:** Sekitar 96.55% (nilai tertinggi di antara semua model).  
+   - **Precision, Recall, F1 Score:** Mencapai nilai yang sangat tinggi dan seimbang.  
+   - **Confusion Matrix:**  
+     ```
+     [[69  5  0  0  0  0  0]
+      [ 0 70  0  0  0  4  0]
+      [ 0  0 84  0  0  0  1]
+      [ 0  0  1 81  0  0  0]
+      [ 0  0  0  0 77  0  0]
+      [ 0  2  0  0  0 67  2]
+      [ 0  0  0  0  0  1 56]]
+     ```
+   Model ini menggabungkan pendekatan boosting secara iteratif, sehingga menghasilkan akurasi tertinggi dan nilai precision, recall, serta F1 score yang sangat stabil. 
+
+### Komparasi dan Pemilihan Model Terbaik
+
+Berdasarkan hasil di atas, **Gradient Boosting Classifier** menempati posisi teratas dengan akurasi sekitar 96.55%, diikuti oleh **Random Forest Classifier** yang memiliki akurasi 95.40%. Kedua model ini sama-sama metode ensemble, namun Gradient Boosting terbukti lebih unggul di dataset obesitas ini. Metode ensemble lain seperti AdaBoost dan KNN menunjukkan performa lebih rendah, sementara Decision Tree, meski akurasinya cukup tinggi, cenderung kurang stabil dibandingkan model ensemble yang lebih canggih.
 
 ## Hubungan dengan Business Understanding
 
-Evaluasi model harus dihubungkan dengan aspek bisnis dan kebutuhan yang telah diidentifikasi pada Business Understanding. Beberapa poin penting adalah sebagai berikut:
-
 - **Jawaban Problem Statement:**  
-  Evaluasi model menunjukkan bahwa pendekatan yang digunakan mampu mengidentifikasi pola-pola penting dalam data gaya hidup, sehingga membantu menjawab permasalahan utama yaitu mengidentifikasi faktor-faktor risiko obesitas. Model prediktif yang dihasilkan (terutama Gradient Boosting Classifier) dapat digunakan untuk mendeteksi individu berisiko tinggi, sehingga berpotensi mengurangi biaya perawatan dan meningkatkan efektivitas intervensi kesehatan.
+   - Model yang dikembangkan mampu mengidentifikasi faktor-faktor risiko obesitas secara efektif, sehingga mendukung inisiatif penurunan biaya perawatan kesehatan dan peningkatan kualitas hidup.
+   - Hasil akurasi tinggi menegaskan bahwa individu dengan risiko obesitas dapat diidentifikasi secara dini.
 
 - **Pencapaian Goals:**  
-  Setiap goals yang telah ditetapkan tercapai secara terukur. Akurasi yang tinggi dan nilai evaluasi lain (precision, recall, dan F1 score) mengindikasikan bahwa model telah mencapai tujuan untuk mengklasifikasikan tingkat obesitas secara akurat. Hasil evaluasi mendukung pemanfaatan model sebagai alat bantu bagi profesional kesehatan untuk diagnosis dini dan pengambilan keputusan berbasis data.
+   - **Identifikasi Faktor Risiko:** Model telah mengungkap beberapa fitur penting, seperti pola makan (FAVC), frekuensi konsumsi sayuran (FCVC), dan aktivitas fisik (FAF), yang memengaruhi risiko obesitas.  
+   - **Pembangunan Model Prediktif:** Gradient Boosting Classifier terbukti memberikan hasil prediksi paling akurat.  
+   - **Dukungan Keputusan Bisnis:** Model dapat diintegrasikan dalam sistem pendukung keputusan bagi lembaga kesehatan atau perusahaan asuransi, membantu menyusun program pencegahan dan intervensi yang lebih tepat sasaran.
 
-- **Dampak dari Solution Statement:**  
-  Proses data preparation yang mencakup pembersihan data, transformasi melalui encoding dan normalisasi, serta pembagian data pelatihan dan pengujian, semuanya berkontribusi pada kinerja model yang optimal. Penggunaan teknik ensemble dan hyperparameter tuning menunjukkan dampak positif terhadap performa model, sehingga solusi yang direncanakan terbukti berdampak signifikan terhadap hasil akhir. Selain itu, evaluasi komprehensif dengan berbagai metrik memastikan bahwa model tidak hanya berperforma tinggi secara teknis, tetapi juga relevan secara bisnis dengan membantu mengidentifikasi dan mengurangi risiko obesitas.
+- **Dampak dari Solusi yang Diusulkan:**  
+   - Tahapan data preparation yang terstruktur, penggunaan metode ensemble, serta evaluasi komprehensif dengan berbagai metrik, semuanya berkontribusi terhadap performa model yang andal.  
+   - Model prediktif ini membantu pihak terkait dalam mengoptimalkan strategi pencegahan obesitas dan menurunkan biaya perawatan jangka panjang.
 
 ## Kesimpulan
 
 Evaluasi model yang dilakukan menggunakan metrik akurasi, precision, recall, F1 score, dan confusion matrix menunjukkan bahwa:
-- Model terbaik adalah Gradient Boosting Classifier, yang menunjukkan performa tertinggi.
-- Model lain seperti Random Forest dan Decision Tree juga menunjukkan hasil yang baik, namun tidak seoptimal model Gradient Boosting.
-- Evaluasi menyeluruh mendukung pemenuhan setiap problem statement yang telah diidentifikasi dan pencapaian goals yang diharapkan.
+- **Model Terbaik:** Gradient Boosting Classifier, dengan akurasi sekitar 96.55%.  
+- **Model Kedua Terbaik:** Random Forest Classifier, dengan akurasi 95.40%.  
+- **Model Lain:** Decision Tree, AdaBoost, dan KNN menunjukkan performa yang lebih rendah.
 
 Secara keseluruhan, solusi yang diimplementasikan telah memberikan dampak positif terhadap pemahaman faktor-faktor gaya hidup yang berkontribusi pada obesitas, dan hasil evaluasi model mendukung pengembangan sistem pendukung keputusan berbasis data untuk intervensi dan diagnosis dini dalam konteks kesehatan. Model terbaik yang dihasilkan dapat dijadikan dasar untuk meningkatkan efektivitas program pencegahan dan pengelolaan obesitas secara profesional.
 ----
