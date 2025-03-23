@@ -183,26 +183,26 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
 
   - Users
 
-    <img width="263" alt="7" src="assets\122.png">
+    <img width="263" alt="7" src="assets\12.png">
 
 - **Penggabungan Data ISBN**
   
   Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
   
-  <img width="296" alt="a" src="https://github.com/user-attachments/assets/30262250-f59d-496b-92d9-17b6ae2abbb4">
+  <img width="296" alt="a" src="assets\13.png">
 
   
 - **Penggabungan Data User**
 
   Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
 
-  <img width="281" alt="b" src="https://github.com/user-attachments/assets/157e3738-fdbc-4946-8e48-8187a33befad">
+  <img width="281" alt="b" src="assets\14.png">
 
 - **Penggabungan Data Buku dan Rating**
 
   Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
 
-  <img width="809" alt="18" src="https://github.com/user-attachments/assets/8363f9dc-38ad-48b8-8b04-6e494abbfc73">
+  <img width="809" alt="18" src="assets\15.png">
 
 - **Handling Missing value**
   
@@ -212,7 +212,7 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
     
     Seperti yang kita tahu bahwa pada data ini terdapat nilai null pada kolom book_author sebanyak 2 data, publisher sebanyak 2 data, dan image_l_url sebanyak 3 data. Oleh karena itu, data yang kosong tersebut dapat dihapus dengan menggunakan fungsi .dropna().
     
-    <img width="226" alt="m1 1" src="https://github.com/user-attachments/assets/538f088f-6d17-4767-b9e6-50eb45a3ecd9">
+    <img width="226" alt="m1 1" src="assets\16.png">
     
     Dapat dilihat dari gambar di atas setelah penghapusan, pengecekan ulang akan menunjukkan bahwa tidak ada lagi data yang kosong atau *null*.
 
@@ -220,7 +220,7 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
     
     Pada dataframe ini memang tidak ditemukan adanya missing value didalamnya. Namun, penghapusan nilai rating 0 tetap perlu dilakukan. Hal ini karena berdasarkan hasil analisis pada tahap *data understanding*, rating 0 merupakan kategori yang paling banyak muncul, yaitu sebanyak 716.109 data. Kondisi ini berpotensi menyebabkan bias dalam analisis data. Oleh karena itu, kategori rating 0 tidak disertakan. Data tersebut tidak akan diikutsertakan ke dalam *dataframe*, sehingga data yang diambil adalah data *rating* yang lebih dari 0, yaitu *rating* 1 hingga *rating* 10 saja. Hasil visualisasi grafik histogram setelah penghapusan dapat dilihat pada gambar di bawah ini.
     
-    <img width="689" alt="8" src="https://github.com/user-attachments/assets/8a3bcb03-eecd-4451-97c5-85fca4ec2912">
+    <img width="689" alt="8" src="assets\17.png">
     
     Berdasarkan hasil visualisasi grafik histogram di atas, rating 0 telah di hapus dan distribusi frekuensi data terlihat lebih rapih dan jelas. Terutama pada rating 1 hingga rating 4.
 
@@ -228,11 +228,11 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
     
     Dataframe `user` memiliki sebanyak 110.762 *missing value* pada fitur `age`, sehingga diperlukan penanganan untuk mengisi data yang hilang tersebut. Dalam kasus ini, data yang kosong akan diisi dengan nilai modus, yaitu nilai yang paling sering muncul dalam data `age`. Proses ini dilakukan menggunakan fungsi `.fillna()` dan `.mode()` untuk menggantikan *missing value* dengan nilai modus secara otomatis.
     
-    <img width="299" alt="m3 1" src="https://github.com/user-attachments/assets/c7e79eb9-ff79-4a30-9627-dd7f4255be84">
+    <img width="299" alt="m3 1" src="assets\18.png">
     
     Berikut ini adalah hasil visualisasi grafik histogram umur.
     
-    <img width="371" alt="10" src="https://github.com/user-attachments/assets/ba2541d1-49a0-4d46-8b13-94872143d590">
+    <img width="371" alt="10" src="assets\19.png">
     
     Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
   
@@ -245,25 +245,25 @@ Setelah melewati tahap preparation di atas, selanjutnya adalah tahap preparation
 
      Pada tahap pertama, menginisialisasi objek `TfidfVectorizer()` untuk mengubah data teks, dalam hal ini penulis buku (`book_author`), menjadi representasi numerik berbasis TF-IDF. Proses ini bertujuan untuk menilai pentingnya setiap kata dalam konteks keseluruhan kumpulan buku.
      
-     <img width="316" alt="f" src="https://github.com/user-attachments/assets/dd8f6e4d-7201-46e5-b6f4-50938bbd8f2a">
+     <img width="316" alt="f" src="assets\20.png">
 
    - Membuat Matriks TF-IDF
 
      Selanjutnya, menerapkan TF-IDF pada kolom penulis buku (`book_author`) untuk membuat matriks TF-IDF yang merepresentasikan setiap penulis dalam bentuk vektor. Matriks ini akan memiliki dimensi sesuai dengan jumlah kata unik yang ditemukan pada data.
      
-     <img width="694" alt="g" src="https://github.com/user-attachments/assets/e6d2d0e1-461b-4d6d-9dfb-1fadcf2d1f20">
+     <img width="694" alt="g" src="assets\21.png">
 
    - Konversi Matriks TF-IDF ke Bentuk Dense
 
      Matriks TF-IDF yang terbentuk pada tahap sebelumnya disimpan dalam bentuk sparse matrix. Untuk mempermudah interpretasi, selanjutnya mengonversinya menjadi matriks padat (dense matrix) agar dapat lebih mudah dianalisis.
      
-     <img width="407" alt="h" src="https://github.com/user-attachments/assets/38070c41-7375-4592-ab79-c02570a5546a">
+     <img width="407" alt="h" src="assets\22.png">
 
    - Melihat Matriks TF-IDF
 
      Matriks TF-IDF yang telah dibentuk kemudian dapat divisualisasikan menggunakan `pandas.DataFrame` untuk melihat bagaimana kata-kata pada penulis buku terdistribusi. Kolom-kolom mewakili kata-kata unik (fitur) yang ada dalam data, sementara baris mewakili judul buku. Hasil ini memungkinkan kita untuk memeriksa seberapa signifikan setiap kata untuk setiap buku.
      
-     <img width="768" alt="i" src="https://github.com/user-attachments/assets/dbed433a-8886-4840-a84d-c7294c690b52">
+     <img width="768" alt="i" src="assets\23.png">
 
 2. **Collaborative Filtering**
 
@@ -272,41 +272,41 @@ Setelah melewati tahap preparation di atas, selanjutnya adalah tahap preparation
        
        Encoding adalah proses konversi data kategorikal (seperti ID atau label dalam bentuk teks) menjadi format numerik, yang diperlukan oleh algoritma pembelajaran mesin (machine learning). Mengubah ID pengguna yang bersifat unik dan kategorikal menjadi angka. Hal ini membantu model untuk memahami dan mengolah interaksi antara pengguna dan buku. Misalnya, pengguna dengan ID `user_1` bisa diwakili dengan angka 0, `user_2` dengan angka 1, dan seterusnya.
        
-       <img width="927" alt="j" src="https://github.com/user-attachments/assets/f666d51c-b40e-49f4-9f46-130e800e6789">
+       <img width="927" alt="j" src="assets\24.png">
 
      - Melakukan encoding pada `ISBN`
        
        Sama seperti `user_id`, ID buku (ISBN) yang bersifat kategorikal diubah menjadi angka. Setiap buku diberikan ID unik berbentuk angka, yang memudahkan model dalam mengidentifikasi dan memproses hubungan antara pengguna dan buku.
        
-       <img width="924" alt="k" src="https://github.com/user-attachments/assets/36f383ca-de1a-45ca-86e2-5ccabe8fce41">
+       <img width="924" alt="k" src="assets\25.png">
 
      - Memetakan `user_id` dan `isbn` ke dalam data frame
 
        Setelah memiliki kamus encoding untuk pengguna dan buku, langkah selanjutnya adalah mengganti nilai pada kolom user_id dan isbn di dataset dengan ID numerik yang sudah kita buat.
        
-       <img width="286" alt="l" src="https://github.com/user-attachments/assets/e951efc4-2b67-455d-a2d0-371b714181f3">
+       <img width="286" alt="l" src="assets\26.png">
 
      - Pengecekan jumlah user, jumlah buku, dan rating minimal & maksimal
 
        Setelah encoding selesai, selanjutnya dapat menampilkan informasi dasar mengenai data, seperti jumlah pengguna dan buku yang ada dalam dataset, serta rating minimum dan maksimum yang terdapat pada dataset.
        
-       <img width="561" alt="m" src="https://github.com/user-attachments/assets/9a319a75-343e-4253-a695-05d7b6607843">
+       <img width="561" alt="m" src="assets\27.png">
 
      - Shuffling the Data (pengacakan)
        
        Data yang diacak (shuffled) digunakan untuk memastikan bahwa data yang digunakan untuk melatih model tidak terurut atau terstruktur dalam cara yang bisa menimbulkan bias. Ini membantu memastikan model belajar dari data yang beragam.
        
-       <img width="274" alt="n" src="https://github.com/user-attachments/assets/daf8ea9d-cbad-4897-bd33-a946aa12b239">
+       <img width="274" alt="n" src="assets\28.png">
 
      - Memisahkan variabel (X) dan target (Y)
        
-        <img width="442" alt="o" src="https://github.com/user-attachments/assets/61a18b4b-e00c-4b98-8524-21ac1052bf93">
+        <img width="442" alt="o" src="assets\28(2).png">
 
      - Membagi data menjadi training (80) dan validation (20)
 
        Pembagian data dilakukan untuk melatih model pada training set dan mengevaluasi kinerjanya pada validation set. Data dibagi menjadi 80% untuk training dan 20% untuk validation.
        
-       <img width="416" alt="p" src="https://github.com/user-attachments/assets/f1e843c1-4d6e-41cf-b91c-de0ba613e6c9">
+       <img width="416" alt="p" src="assets\29.png">
 
        
 ## Modeling and Result
@@ -323,22 +323,22 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
        
      Untuk melakukan perhitungan derajat kesamaan (*similarity degree*) antar judul buku dapat dilakukan dengan teknik *cosine similarity* menggunakan fungsi `cosine_similarity` dari library `sklearn`.
    
-   <img width="317" alt="q" src="https://github.com/user-attachments/assets/76c270b0-ec6f-4cd0-a0c3-426c8206ab98">
+   <img width="317" alt="q" src="assets\30.png">
 
      Metode ini sangat berguna dalam Content-Based Filtering karena membantu menghitung kemiripan antara buku yang berbeda berdasarkan atribut seperti deskripsi atau genre. Cosine Similarity akan melakukan perhitungan derajat kesamaan (similarity degree) antar judul buku. Ukuran matriks yang diperoleh adalah sebesar 10.000 data buku dan 10.000 data buku juga.
    
-     <img width="186" alt="r" src="https://github.com/user-attachments/assets/8b3f2d8b-e00b-4f5a-9524-e19b958be0c5">
+     <img width="186" alt="r" src="assets\31.png">
      
      
-     <img width="767" alt="15" src="https://github.com/user-attachments/assets/3c6d9085-2b0f-47a8-82d8-01f370f3d579">
+     <img width="767" alt="15" src="assets\32.png">
 
      Selanjutnya untuk membuat fungsi rekomendasi. Top-N Recommendation adalah langkah akhir dalam sistem rekomendasi di mana algoritma memilih sejumlah buku (N) dengan nilai kesamaan tertinggi terhadap buku yang sedang dicari atau yang sudah dinikmati oleh pengguna. Buku-buku ini disusun berdasarkan skor kesamaan, sehingga sistem dapat memberikan rekomendasi yang paling relevan dan menarik bagi pengguna. Hasil pengujian sistem rekomendasi dengan pendekatan content-based recommendation adalah sebagai berikut.
 
-     <img width="934" alt="s" src="https://github.com/user-attachments/assets/2bf66154-5221-4a52-aa81-b3929fb6e735">
+     <img width="934" alt="s" src="assets\33.png">
 
      Gambar diatas menunjukan data berdasarkan detail buku yang telah dibaca berdasarkan readed_book_title yaitu `Proxies. berikut ini pencarian yang direkomendasikan yang paling mirip dengan buku "Proxies" : 
   
-     <img width="290" alt="17" src="https://github.com/user-attachments/assets/870679e3-26a7-4c9f-9e40-2c130afbee43">
+     <img width="290" alt="17" src="assets\34.png">
 
      Sistem yang telah dibangun berhasil memberikan rekomendasi beberapa judul buku berdasarkan input judul buku "Proxies", dan menghasilkan daftar buku yang relevan berdasarkan perhitungan yang dilakukan oleh sistem.
    
@@ -362,33 +362,35 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
 
      RecommenderNet adalah model Neural Collaborative Filtering yang dirancang untuk memberikan rekomendasi kepada pengguna berdasarkan interaksi mereka dengan item (seperti buku). Model ini menggunakan embedding untuk memetakan pengguna dan item ke dalam ruang vektor berdimensi rendah, sehingga memungkinkan model untuk menangkap hubungan yang lebih kompleks antara keduanya. Proses utamanya melibatkan vektor embedding untuk pengguna dan item yang dihitung melalui produk titik (dot product), kemudian ditambahkan dengan bias pengguna dan item untuk mengakomodasi preferensi atau popularitas yang lebih umum. Hasil dari interaksi ini diproses dengan fungsi aktivasi sigmoid, yang menghasilkan nilai antara 0 dan 1, mencerminkan kemungkinan apakah seorang pengguna akan menyukai atau berinteraksi dengan item tertentu. Model ini efektif dalam memahami pola preferensi pengguna dan memberikan rekomendasi yang relevan berdasarkan data historis yang ada.
      
-     <img width="461" alt="t" src="https://github.com/user-attachments/assets/d0f95c8a-3e79-4000-a3c8-420ab7b4d3c3">
+     <img width="461" alt="t" src="assets\35.png">
 
    - Recommendation Testing
      
      Berdasarkan model yang telah dilatih, berikut ini adalah hasil evaluasi dari sistem rekomendasi buku yang menggunakan pendekatan collaborative filtering recommendation.
      
-     <img width="425" alt="u" src="https://github.com/user-attachments/assets/6ac75030-6858-4ccd-b290-d73e9a172a1b">
+     <img width="425" alt="u" src="assets\36.png">
 
-     <img width="652" alt="21" src="https://github.com/user-attachments/assets/bed39d15-9208-4c9a-88de-5c292c387c25">
+     <img width="652" alt="21" src="assets\37.png">
 
-     Berdasarkan hasil di atas, dapat dilihat bahwa sistem akan mengambil pengguna secara acak, yaitu pengguna dengan `user_id` **278843**. Selanjutnya, sistem akan mencari buku dengan *rating* tertinggi dari pengguna tersebut, yaitu:
-     *   **Divine Secrets of the Ya-Ya Sisterhood : A Novel** oleh **Rebecca Wells**
-     *   **Icy Sparks** oleh **Gwyn Hyman Rubio**
-     *   **The Bonesetter's Daughter** oleh **Amy Tan**
-     *   **The Things They Carried** oleh **Tim O'Brien**  
+      Berdasarkan hasil di atas, dapat dilihat bahwa sistem akan mengambil pengguna secara acak, yaitu pengguna dengan `user_id` **1178**. Selanjutnya, sistem akan mencari buku dengan *rating* tertinggi dari pengguna tersebut, yaitu:
+
+      *   **Way Out West Lives a Coyote Named Frank (Picture Puffins)** oleh **Jillian Lund**  
+      *   **Island of the Blue Dolphins (Laurel Leaf Books)** oleh **Scott O'Dell**  
+      *   **How to Fight a Girl** oleh **THOMAS ROCKWELL**  
+      *   **Romantic Obsessions and Humiliations of Annie Sehlmeier ** oleh **Louise Plummer**  
 
       Kemudian, sistem akan membandingkan antara buku dengan *rating* tertinggi dari pengguna tersebut dan semua buku lainnya yang belum pernah dibaca, lalu mengurutkan buku yang akan direkomendasikan berdasarkan nilai prediksi rekomendasi tertinggi. Terdapat 10 daftar buku yang direkomendasikan oleh sistem, yaitu:
-      *   **To Kill a Mockingbird** oleh **Harper Lee**  
+
       *   **The Secret Life of Bees** oleh **Sue Monk Kidd**  
-      *   **The Bean Trees** oleh **Barbara Kingsolver**  
+      *   **The Red Tent (Bestselling Backlist)** oleh **Anita Diamant**  
       *   **Life of Pi** oleh **Yann Martel**  
-      *   **Chasing the Dime** oleh **Michael Connelly**  
-      *   **A Walk in the Woods: Rediscovering America on the Appalachian Trail** oleh **Bill Bryson**  
-      *   **The Cabinet of Curiosities** oleh **Douglas Preston**  
-      *   **Wuthering Heights** oleh **Emily Bronte**  
-      *   **The Visitor (Animorphs, No 2)** oleh **K. A. Applegate**  
-      *   **The King of Torts** oleh **John Grisham**  
+      *   **Angela's Ashes: A Memoir** oleh **Frank McCourt**  
+      *   **Les Fourmis** oleh **Bernard Werber**  
+      *   **My Grandfathers Blessings : Stories of Strength, Refuge, and Belonging** oleh **Rachel Naomi Remen M.D.**  
+      *   **The Grapes of Wrath: John Steinbeck Centennial Edition (1902-2002)** oleh **John Steinbeck**  
+      *   **The Handmaid's Tale** oleh **Margaret Atwood**  
+      *   **The Golden Mean: In Which the Extraordinary Correspondence of Griffin &amp; Sabine Concludes** oleh **Nick Bantock**  
+      *   **The Watsons Go to Birmingham - 1963 (Yearling Newbery)** oleh **CHRISTOPHER PAUL CURTIS**  
 
       Dapat dibandingkan antara daftar ***Book with high ratings from user*** dan ***Top 10 Books Recommendation***, terdapat beberapa kesesuaian pola rekomendasi berdasarkan preferensi pengguna. Hal ini menunjukkan bahwa sistem yang dibangun dapat memberikan rekomendasi buku kepada pengguna dengan hasil yang relevan dan sesuai prediksi.
 
@@ -420,7 +422,7 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
 
    Masih menggunakan data yang sama pada tahap Modeling content-based recommendation, pada proses hasil Top-N Recommendation, akan dilakukan proses pencarian judul buku atau book_title yang memiliki kemiripan berdasarkan data buku yang telah dibaca oleh pengguna, yaitu 'Proxies'. Hasil dari Top-N Recommendation mendapatkan beberapa rekomendasi judul buku seperti pada tabel berikut:
 
-   <img width="290" alt="17" src="https://github.com/user-attachments/assets/5656552e-87c9-413c-aad3-fc8624fa2251">
+   <img width="290" alt="17" src="assets\38.png">
 
    Dari hasil rekomendasi di atas, diketahui bahwa proses rekomendasi berhasil menghasilkan beberapa judul buku yang memiliki kemiripan tertentu dengan buku *'Proxies'*, berdasarkan analisis kesamaan konten melalui penghitungan **Cosine Similarity**. Proses ini menggunakan representasi vektor dari data buku untuk menentukan tingkat kemiripan antarjudul, menghasilkan rekomendasi dengan skor **precision** mencapai **88%**. Skor ini menunjukkan kemampuan sistem untuk secara akurat mengidentifikasi buku yang relevan sesuai dengan preferensi pengguna, memberikan dasar yang kuat untuk pengembangan sistem rekomendasi yang lebih optimal.
    
@@ -434,7 +436,7 @@ Tahap berikutnya adalah membangun model machine learning yang berfungsi sebagai 
    
    Nilai RMSE yang rendah menunjukkan bahwa perbedaan antara nilai yang diprediksi oleh model dan nilai observasi yang sebenarnya sangat kecil. Dengan kata lain, semakin kecil nilai RMSE, semakin akurat prediksi model dibandingkan dengan data asli. Berikut ini adalah visualisasi dari hasil training dan validation error menggunakan metrik RMSE, serta grafik yang menunjukkan training dan validation loss selama proses pelatihan.
 
-   <img width="719" alt="22" src="https://github.com/user-attachments/assets/401e5202-2db3-443d-a082-8d834616111d">
+   <img width="719" alt="22" src="assets\39.png">
 
    Secara keseluruhan, grafik diatas menunjukkan bahwa model berhasil mempelajari pola dari data dan dapat memberikan hasil yang baik pada data latih maupun data validasi. Penurunan yang stabil pada RMSE dan loss mengindikasikan bahwa model semakin akurat dalam memprediksi hasil.
 
