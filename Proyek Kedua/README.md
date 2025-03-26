@@ -170,40 +170,6 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
 ## Data Preparation
 Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
 
-- **Mengubah Nama Kolom**
-  
-  Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
-  - Books
-
-    <img width="805" alt="5" src="assets\10.png">
-
-  - Ratings
-
-    <img width="226" alt="6" src="assets\11.png">
-
-  - Users
-
-    <img width="263" alt="7" src="assets\12.png">
-
-- **Penggabungan Data ISBN**
-  
-  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
-  
-  <img width="296" alt="a" src="assets\13.png">
-
-  
-- **Penggabungan Data User**
-
-  Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
-
-  <img width="281" alt="b" src="assets\14.png">
-
-- **Penggabungan Data Buku dan Rating**
-
-  Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
-
-  <img width="809" alt="18" src="assets\15.png">
-
 - **Handling Missing value**
   
   Handling Missing Value adalah proses yang dilakukan untuk menangani data yang hilang atau tidak lengkap dalam dataset. Data yang hilang dapat menyebabkan masalah dalam analisis atau pelatihan model, sehingga perlu ditangani dengan cara yang sesuai agar hasil analisis tetap valid dan akurat. Berikut ini adalah tahapan yang dilakukan
@@ -235,6 +201,43 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
     <img width="371" alt="10" src="assets\19.png">
     
     Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
+
+- **Mengubah Nama Kolom**
+  
+  Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
+  - Books
+
+    <img width="805" alt="5" src="assets\10.png">
+
+  - Ratings
+
+    <img width="226" alt="6" src="assets\11.png">
+
+  - Users
+
+    <img width="263" alt="7" src="assets\12.png">
+- **Pengecekan Duplikasi**
+  
+  Memeriksa data duplikat dalam dataframe menggunakan fungsi .duplikat.sum()
+   
+- **Penggabungan Data ISBN**
+  
+  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
+  
+  <img width="296" alt="a" src="assets\13.png">
+
+  
+- **Penggabungan Data User**
+
+  Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
+
+  <img width="281" alt="b" src="assets\14.png">
+
+- **Penggabungan Data Buku dan Rating**
+
+  Proses penggabungan (merge) dilakukan untuk mengintegrasikan data dari dataframe buku dan dataframe rating menjadi satu dataframe yang komprehensif. Dengan langkah ini, informasi yang sebelumnya terpisah dapat digabungkan, sehingga mempermudah analisis atau pemodelan lebih lanjut.
+
+  <img width="809" alt="18" src="assets\15.png">
   
 Setelah melewati tahap preparation di atas, selanjutnya adalah tahap preparation pada masing-masing pendekatan : 
 1. **Content-Based Filtering**
