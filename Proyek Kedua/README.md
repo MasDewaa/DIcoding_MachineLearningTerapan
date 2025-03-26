@@ -135,6 +135,41 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
   - `Location` : Lokasi tempat tinggal pengguna
   - `Age` : Umur pengguna
 
+
+## Data Preprocessing
+Data preprocessing adalah proses mempersiapkan data mentah agar siap digunakan untuk analisis lebih lanjut atau pelatihan model machine learning. Data yang diperoleh sering kali tidak dalam bentuk yang ideal untuk digunakan langsung. Oleh karena itu, preprocessing diperlukan untuk membersihkan, mengubah, dan menyusun data agar lebih sesuai dengan kebutuhan analisis atau algoritma yang akan digunakan. Dalam kasus ini, tahap *data preprocessing* dilakukan dengan menyesuaikan nama kolom atau atribut masing-masing *dataframe*, melakukan penggabungkan data ISBN, dan data *User* untuk melihat jumlah data secara keseluruhan.
+
+- **Mengubah Nama Kolom**
+  
+  Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
+  - Books
+
+    <img width="805" alt="5" src="assets\10.png">
+
+  - Ratings
+
+    <img width="226" alt="6" src="assets\11.png">
+
+  - Users
+
+    <img width="263" alt="7" src="assets\12.png">
+   
+- **Penggabungan Data ISBN**
+  
+  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
+  
+  <img width="296" alt="a" src="assets\13.png">
+
+  
+- **Penggabungan Data User**
+
+  Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
+
+  <img width="281" alt="b" src="assets\14.png">
+
+## Data Preparation
+  Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
+
 - **Pengecekkan Missing Value**
 
   Missing value adalah nilai yang hilang atau tidak ada dalam sebuah dataset. Hal ini terjadi ketika data tidak tersedia atau tidak tercatat untuk suatu entri atau atribut tertentu. Missing value sering ditemukan dalam berbagai bentuk, seperti kosong, NaN (Not a Number), atau null, dan bisa muncul karena berbagai alasan, seperti kesalahan pengumpulan data, ketidaksesuaian antara sumber data, atau kelalaian dalam pencatatan. Pengecekan *missing value* pada *dataframe* dapat dilakukan dengan menggunakan fungsi `.isnull().sum()`, yang akan menghasilkan total jumlah data yang kosong atau hilang (*missing*).
@@ -163,12 +198,9 @@ Dalam dataset tersebut berisi tiga 3 data CSV yaitu `Books.csv`, `Ratings.csv`, 
 
   Pengecekan data duplikat dilakukan untuk memastikan tidak ada baris atau entri data yang muncul lebih dari sekali, yang dapat memengaruhi hasil analisis. Untuk memeriksa adanya data duplikat atau data yang sama dalam sebuah dataframe, kita dapat menggunakan fungsi `.duplicated().sum()`. Berikut ini adalah hasil pengecekan duplicate pada setiap data yang digunakan.
   
-  <img width="232" alt="11" src="assets\9.png>
+  <img width="232" alt="11" src="assets\9.png">
 
    Berdasarkan gambar di atas, dapat disimpulkan bahwa data telah bersih dari duplikasi. Hal ini menunjukkan bahwa setiap baris data kini bersifat unik, tanpa adanya pengulangan entri. Dengan demikian, data siap digunakan untuk analisis atau pemrosesan lebih lanjut tanpa khawatir akan bias akibat adanya data duplikat.
-
-## Data Preparation
-Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi format yang sesuai untuk proses pemodelan. Tahap ini sangat penting untuk memastikan bahwa model dapat bekerja secara optimal dengan data yang bersih, terstruktur, dan relevan. Proses data preparation melibatkan beberapa langkah utama, yaitu:
 
 - **Handling Missing value**
   
@@ -201,37 +233,6 @@ Pada tahap data preparation, data diolah dan ditransformasikan agar menjadi form
     <img width="371" alt="10" src="assets\19.png">
     
     Dari grafik di atas dapat dilihat bahwa umur pengguna paling banyak berada pada rentang usia 20 hingga 30 tahun.
-
-- **Mengubah Nama Kolom**
-  
-  Perubahan nama kolom bertujuan untuk memudahkan proses pemanggilan dataframe dengan nama kolom yang lebih mudah diingat.
-  - Books
-
-    <img width="805" alt="5" src="assets\10.png">
-
-  - Ratings
-
-    <img width="226" alt="6" src="assets\11.png">
-
-  - Users
-
-    <img width="263" alt="7" src="assets\12.png">
-- **Pengecekan Duplikasi**
-  
-  Memeriksa data duplikat dalam dataframe menggunakan fungsi .duplikat.sum()
-   
-- **Penggabungan Data ISBN**
-  
-  Penggabungan data ISBN buku dilakukan dengan menggunakan fungsi `.concatenate` yang disediakan oleh library numpy. Data ISBN ini ada pada dua dataframe, yaitu dataframe buku dan dataframe rating, dan penggabungan dilakukan berdasarkan kolom atau atribut isbn.
-  
-  <img width="296" alt="a" src="assets\13.png">
-
-  
-- **Penggabungan Data User**
-
-  Penggabungan data user_id pada buku dilakukan dengan menggunakan fungsi `.concatenate` dari library numpy. Data user_id terdapat dalam dua dataframe, yaitu dataframe rating dan dataframe user, dan penggabungan dilakukan berdasarkan kolom atau atribut user_id.
-
-  <img width="281" alt="b" src="assets\14.png">
 
 - **Penggabungan Data Buku dan Rating**
 
